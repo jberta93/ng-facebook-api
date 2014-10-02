@@ -4,13 +4,58 @@
 
 'use strict';
 
-angular.module('ng-facebook-api', []).service('Facebook', function Facebook($q) {
+var module = angular.module('ng-facebook-api', []);
+
+
+module.provider('facebook',function (){
+	var config = {};
+	
+	this.setInitParams = function(appId,status,xfbml,cookie,apiVersion){
+		config = {
+				appId      : appId,
+			    status     : status,
+			    xfbml      : xfbml,
+			    cookie     : cookie,
+			    version    : apiVersion
+		}
+	}
+	
+	
+	this.setAppId = function(appId){
+		config.appId = appId;
+	}
+	
+	this.setApiVersion = function(apiVersion){
+		config.version = apiVersion;
+	}
+	
+	this.setCookie = function(cookie){
+		config.cookie = cookie;
+	}
+	
+	this.$get = function(FacebookService){
+		var providerFunc = {
+				init: function(){
+					FB.init(config);
+				},
+				getConfig : function(){
+					return config;
+				}
+		} ;
+		
+		angular.extend(providerFunc,FacebookService);
+		return providerFunc;
+	}
+	
+});
+
+module.service('FacebookService', function FacebookService($q) {
 	  
 	  var settings = {};
 	  var currentUserAuthResponse = null;
 	  var API_METHOD = {GET: "get", POST: "post", DELETE: "delete"}
 	  
-	  var init = function(permissions){
+	  var setPermissions = function(permissions){
 		  settings.permissions = permissions;
 	  }
 	  
@@ -109,6 +154,14 @@ angular.module('ng-facebook-api', []).service('Facebook', function Facebook($q) 
 		  api: api,
 		  checkLoginStatus: checkLoginStatus,
 		  getUser: getUser,
-		  init : init
+		  setPermissions : setPermissions
 	  }
   });
+
+
+module.run(['$rootScope', '$window', 'facebook', function($rootScope, $window, facebookProvider) {
+    $window.fbAsyncInit = function() {
+    	facebookProvider.init();
+    };
+    facebookProvider.init();
+}]);
