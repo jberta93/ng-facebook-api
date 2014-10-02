@@ -62,7 +62,9 @@ angular.module('ng-facebook-api', []).service('Facebook', function Facebook($q) 
 			  deferred.promise = checkLoginStatus().then( 
 					  function(resp){
 						  apiWrapper(path, method, params).then(function(response){
-							  deferred.resolve(response);
+							  var res = $q.defer();
+							  res.resolve(response);
+							  return res.promise;
 						  }, function(err){
 							  deferred.reject(err);
 						  });
