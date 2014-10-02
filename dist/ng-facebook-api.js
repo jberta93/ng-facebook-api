@@ -4,7 +4,7 @@
 
 'use strict';
 
-angular.module('ng-facebook-api').service('Facebook', function Facebook($q) {
+angular.module('ng-facebook-api', []).service('Facebook', function Facebook($q) {
 	  
 	  var settings = {};
 	  var currentUserAuthResponse = null;
