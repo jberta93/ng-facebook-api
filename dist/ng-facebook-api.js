@@ -53,24 +53,17 @@ angular.module('ng-facebook-api', []).service('Facebook', function Facebook($q) 
 		  }
 		  
 		  if(currentUserAuthResponse != null){
-			  deferred.promise = apiWrapper(path, method, params).then(function(response){
-				  deferred.resolve(response);
-			  }, function(err){
-				  deferred.reject(err);
-			  });
+			  deferred.promise = apiWrapper(path, method, params);
+				
 		  }else{
 			  deferred.promise = checkLoginStatus().then( 
 					  function(resp){
-						  apiWrapper(path, method, params).then(function(response){
-							  var res = $q.defer();
-							  res.resolve(response);
-							  return res.promise;
-						  }, function(err){
-							  deferred.reject(err);
-						  });
+						  return apiWrapper(path, method, params);
 					  },
 					  function(err){
-						  deferred.reject(err);
+						  var r = $q.defer();
+						  r.reject(err);
+						  return r.promise;
 					  }
 			  );
 		  }
@@ -86,11 +79,7 @@ angular.module('ng-facebook-api', []).service('Facebook', function Facebook($q) 
 				  currentUserAuthResponse = response.authResponse;
 				  deferred.resolve(currentUserAuthResponse);
 			  } else {
-				  deferred.promise = doLogin().then(function(res){
-					  deferred.resolve(currentUserAuthResponse);
-				  }, function(err){
-					  deferred.reject(err);
-				  })
+				  deferred.promise = doLogin();
 			  } 
 		  });
 		  
