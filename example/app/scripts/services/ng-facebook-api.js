@@ -33,31 +33,28 @@ module.provider('facebook',function (){
 		config.cookie = cookie;
 	}
 	
-	var sdkInit = function($q){
-		var def=$q.defer();
+	var sdkInit = function($rootScope){
 		if(typeof window.FB == 'undefined'){
 			 window.fbAsyncInit = function() {
 				 FB.init(config);
-				 def.resolve(true);
+				 $rootScope.$broadcast("fb.init", FB);
 			 };
 		 }else{
 			 FB.init(config);
-			 return $q.when(true);
+			 $rootScope.$broadcast("fb.init", FB);
 		 }
-		 return def.promise;
 	}
 	
-	this.$get = function(FacebookService, $q){
+	this.$get = function(FacebookService, $rootScope){
 		
-		sdkInit($q).then(function(){
-			var providerFunc = {
-					getConfig : function(){
-						return config;
-					}
-			} ;
-			angular.extend(providerFunc,FacebookService);
-			return providerFunc;
-		});
+		sdkInit($rootScope);
+		var providerFunc = {
+				getConfig : function(){
+					return config;
+				}
+		} ;
+		angular.extend(providerFunc,FacebookService);
+		return providerFunc;
 		
 	}
 	
