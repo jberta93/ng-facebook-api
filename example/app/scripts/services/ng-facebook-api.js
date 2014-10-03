@@ -65,19 +65,50 @@ module.service('FacebookService', function FacebookService($q) {
 	  var settings = {};
 	  var currentUserAuthResponse = null;
 	  var API_METHOD = {GET: "get", POST: "post", DELETE: "delete"}
+	  var PICTURE_TYPE = {SQUARE: "square", SMALL:"small", NORMAL: "normal", LARGE: "large"}
 	  
 	  var setPermissions = function(permissions){
 		  settings.permissions = permissions;
 	  }
 	  
 	  
-	  var getUser = function(fields){
+	  var getUser = function(id, fields){
 		  var deferred = $q.defer();
-		  if(typeof(fields) === "undefined"){
+		  
+		  var request = "/me/";
+		  
+		  if(angular.isDefined(id) && id != null){
+			  request = "/"+id+"/"
+		  }
+		  
+		  if(!angular.isDefined(fields) && fields == null){
 			  fields = {};
 		  }
-		  api("/me/",API_METHOD.GET,fields).then(function(response){
+		  api(request,API_METHOD.GET,fields).then(function(response){
 			  deferred.resolve({fields:response,authResponse: currentUserAuthResponse});
+		  },function(err){
+			  deferred.reject(err);
+		  });
+		  
+		  return deferred.promise;
+	  }
+	  
+	  var getUserPicture = function(params){
+		  var deferred = $q.defer();
+		  var defParams = {
+				  userId: "me",
+				  fields: {
+					  redirect: false,
+					  height: "200",
+					  type: PICTURE_TYPE.NORMAL,
+					  width: "200"
+				  }
+		  }
+		  
+		  angular.extend(defParams,params);
+		  
+		  api('/'+defParams.userId+'/picture',API_METHOD.GET,defParams.fields).then(function(response){
+			  deferred.resolve({pictureInfo:response,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
 		  });
@@ -162,13 +193,13 @@ module.service('FacebookService', function FacebookService($q) {
 	  
 	  return {
 		  API_METHOD: API_METHOD,
+		  PICTURE_TYPE: PICTURE_TYPE,
 		  api: api,
 		  checkLoginStatus: checkLoginStatus,
 		  getUser: getUser,
+		  getUserPicture: getUserPicture,
 		  setPermissions : setPermissions
 	  }
   });
 
 
-module.run(['$rootScope', '$window', 'facebook', function($rootScope, $window, facebookProvider) {
-}]);

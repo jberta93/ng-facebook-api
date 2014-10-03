@@ -96,7 +96,7 @@ module.service('FacebookService', function FacebookService($q) {
 	  var getUserPicture = function(params){
 		  var deferred = $q.defer();
 		  var defParams = {
-				  userId: "me"
+				  userId: "me",
 				  fields: {
 					  redirect: false,
 					  height: "200",
