@@ -33,18 +33,32 @@ module.provider('facebook',function (){
 		config.cookie = cookie;
 	}
 	
-	this.$get = function(FacebookService){
-		var providerFunc = {
-				init: function(){
-					FB.init(config);
-				},
-				getConfig : function(){
-					return config;
-				}
-		} ;
+	var sdkInit = function($q){
+		var def=$q.defer();
+		if(typeof $window.FB == 'undefined'){
+			 $window.fbAsyncInit = function() {
+				 FB.init(config);
+				 def.resolve(true);
+			 };
+		 }else{
+			 FB.init(config);
+			 return q.when(true);
+		 }
+		 return def.promise;
+	}
+	
+	this.$get = function(FacebookService, $q){
 		
-		angular.extend(providerFunc,FacebookService);
-		return providerFunc;
+		sdkInit($q).then(function(){
+			var providerFunc = {
+					getConfig : function(){
+						return config;
+					}
+			} ;
+			angular.extend(providerFunc,FacebookService);
+			return providerFunc;
+		});
+		
 	}
 	
 });
@@ -160,8 +174,4 @@ module.service('FacebookService', function FacebookService($q) {
 
 
 module.run(['$rootScope', '$window', 'facebook', function($rootScope, $window, facebookProvider) {
-    $window.fbAsyncInit = function() {
-    	facebookProvider.init();
-    };
-    facebookProvider.init();
 }]);
