@@ -85,7 +85,7 @@ module.service('FacebookService', function FacebookService($q) {
 			  fields = {};
 		  }
 		  api(request,API_METHOD.GET,fields).then(function(response){
-			  deferred.resolve({fields:response,authResponse: currentUserAuthResponse});
+			  deferred.resolve({fields:response.data,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
 		  });
