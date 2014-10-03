@@ -71,12 +71,19 @@ module.service('FacebookService', function FacebookService($q) {
 	  }
 	  
 	  
-	  var getUser = function(fields){
+	  var getUser = function(id, fields){
 		  var deferred = $q.defer();
-		  if(typeof(fields) === "undefined"){
+		  
+		  var request = "/me/";
+		  
+		  if(angular.isDefined(id)){
+			  request = "/"+id+"/"
+		  }
+		  
+		  if(!angular.isDefined(fields)){
 			  fields = {};
 		  }
-		  api("/me/",API_METHOD.GET,fields).then(function(response){
+		  api(request,API_METHOD.GET,fields).then(function(response){
 			  deferred.resolve({fields:response,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
