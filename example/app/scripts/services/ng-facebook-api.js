@@ -85,7 +85,7 @@ module.service('FacebookService', function FacebookService($q) {
 			  fields = {};
 		  }
 		  api(request,API_METHOD.GET,fields).then(function(response){
-			  deferred.resolve({fields:response.data,authResponse: currentUserAuthResponse});
+			  deferred.resolve({fields:response,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
 		  });
@@ -108,7 +108,7 @@ module.service('FacebookService', function FacebookService($q) {
 		  angular.extend(defParams,params);
 		  
 		  api('/'+defParams.userId+'/picture',API_METHOD.GET,defParams.fields).then(function(response){
-			  deferred.resolve({pictureInfo:response,authResponse: currentUserAuthResponse});
+			  deferred.resolve({picture:response.data,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
 		  });
