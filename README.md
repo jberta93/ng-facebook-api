@@ -57,7 +57,7 @@ module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
 
 ### Run the method
 
-Run the method that you need. For instance getUser to get user available information.
+Run the method that you need. For instance: `getUser` to obtain user available information.
 
 ```javascript
 module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
@@ -73,6 +73,13 @@ module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
 	});
 });
 ```
+
+###Documentation
+
+#### Enum
+
+#### Method
+
 
 
 
