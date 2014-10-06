@@ -76,7 +76,11 @@ module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
 
 ###Documentation
 
+The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wiki/Home)
+
 #### Enum
+* [API_METHOD](https://github.com/jberta93/ng-facebook-api/wiki/API_METHOD) | The HTTP method that you can use to call the api.
+* [PICTURE_TYPE](https://github.com/jberta93/ng-facebook-api/wiki/PICTURE_TYPE) | When you get user profile image use this to get a pre-specified size of picture.
 
 #### Method
 
