@@ -7,6 +7,31 @@ Ready and easy to use.
 
 The module is now under developing, in the next weeks the module will be completed and we're going to put online the official docs.
 
+##Configuration
+
+1. Download the library [clicking here](https://github.com/jberta93/ng-facebook-api/archive/master.zip)
+2. Include [Facebook JS SDK](https://developers.facebook.com/docs/javascript/quickstart/v2.1), only the SDK not the initialization `window.fbAsyncInit` and `FB.init`
+3. Modify your application inject the `ng-facebook-api`
+4. In your application config, setup the facebookProvider with your Facebook App settings. The settings are used in FB.init [see the references](https://developers.facebook.com/docs/javascript/reference/FB.init/)
+
+Here an example of configuration:
+```javascript
+angular
+  .module('<your-app-name>',['ng-facebook-api'])
+     .config(function( facebookProvider) {
+        /**
+        * Here the list of params used to configure the provider
+        * @param appId
+        * @param status
+        * @param xfbml
+        * @param cookie
+        * @param api-version
+        */
+	      facebookProvider.setInitParams('your-fb-app-id',true,true,true,'v2.1');
+      });
+```
+
+
 License
 ===============================
 This project is released over [MIT license](http://opensource.org/licenses/MIT "MIT License")
