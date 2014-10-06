@@ -191,6 +191,18 @@ module.service('FacebookService', function FacebookService($q) {
 		  return deferred.promise;
 	  }
 	  
+	  var doLogout = function(){
+		  var deferred = $q.defer();
+		  FB.logout(function(response) {
+			  if (!response || response.error) {
+				  deferred.reject(response);
+			  }else{
+				  deferred.resolve(response);
+			  }
+		   });
+		  return deferred.promise;	 
+      }
+	  
 	  return {
 		  API_METHOD: API_METHOD,
 		  PICTURE_TYPE: PICTURE_TYPE,
@@ -198,6 +210,7 @@ module.service('FacebookService', function FacebookService($q) {
 		  checkLoginStatus: checkLoginStatus,
 		  getUser: getUser,
 		  getUserPicture: getUserPicture,
+		  logout: doLogout,
 		  setPermissions : setPermissions
 	  }
   });
