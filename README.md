@@ -80,11 +80,16 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 
 #### Enum
 * [API_METHOD](https://github.com/jberta93/ng-facebook-api/wiki/API_METHOD) | The HTTP method that you can use to call the api.
-* [PICTURE_TYPE](https://github.com/jberta93/ng-facebook-api/wiki/PICTURE_TYPE) | When you get user profile image use this to get a pre-specified size of picture.
+* [PICTURE_TYPE](https://github.com/jberta93/ng-facebook-api/wiki/PICTURE_TYPE) | When you get user profile image use this to indicate a pre-specified size of picture.
 
 #### Method
 
-
+* [api(path, method, params)](https://github.com/jberta93/ng-facebook-api/wiki/api) | Permits to call the Graph API
+* [checkLoginStatus()](https://github.com/jberta93/ng-facebook-api/wiki/checkLoginStatus) | Check if user isn't logged and launch login procedure.
+* [getUser(id, fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUser) | Get logged user info
+* [login()](https://github.com/jberta93/ng-facebook-api/wiki/login) 
+* [logout()](https://github.com/jberta93/ng-facebook-api/wiki/logout) 
+* [setPermissions(permissions)](https://github.com/jberta93/ng-facebook-api/wiki/setPermissions) 
 
 
 
