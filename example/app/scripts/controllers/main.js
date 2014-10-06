@@ -4,7 +4,6 @@ angular.module('exampleApp')
   .controller('MainCtrl', function ($scope, facebook) {
     $scope.results = [];
     
-    facebook.setPermissions(['read_stream']);
     
     $scope.getPublicProfile = function(){
     	facebook.getUser().then(function(r){

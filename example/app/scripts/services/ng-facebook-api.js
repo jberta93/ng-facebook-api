@@ -9,7 +9,7 @@ var module = angular.module('ng-facebook-api', []);
 
 module.provider('facebook',function (){
 	var config = {};
-	
+	var permissions = [];
 	this.setInitParams = function(appId,status,xfbml,cookie,apiVersion){
 		config = {
 				appId      : appId,
@@ -45,14 +45,21 @@ module.provider('facebook',function (){
 		 }
 	}
 	
+	this.setPermissions = function(perms){
+		permissions = perms;
+	}
+	
 	this.$get = function(FacebookService, $rootScope){
 		
 		sdkInit($rootScope);
+		
+		FacebookService.setPermissions(permissions);
+		
 		var providerFunc = {
 				getConfig : function(){
 					return config;
 				}
-		} ;
+		};
 		angular.extend(providerFunc,FacebookService);
 		return providerFunc;
 		
@@ -210,6 +217,7 @@ module.service('FacebookService', function FacebookService($q) {
 		  checkLoginStatus: checkLoginStatus,
 		  getUser: getUser,
 		  getUserPicture: getUserPicture,
+		  login:doLogin,
 		  logout: doLogout,
 		  setPermissions : setPermissions
 	  }
