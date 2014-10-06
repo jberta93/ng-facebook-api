@@ -33,9 +33,48 @@ angular
 	 facebookProvider.setPermissions(['email','read_stream']);
       });
 ```
+
+
 **Important:** You must include the JS SDK in your `<head>` or in method `.run(function(){})` of angular app.
 
-##
+##Usage
+
+The provider permits to have an easy access to the most used api (like user info retriving, avatar, etc..) but also permits, thanks to `api` method, to used all methods of [Graph API](https://developers.facebook.com/docs/graph-api/reference/).
+
+Every methods check the login status and if user isn't logged, launch the login procedure. Anyway the provider has public methods `login` and `checkLoginStatus` to implement your custom flows. 
+
+### Check SDK Loading
+
+In your controller listen on the `$rootScope` the event `fb.init`
+
+```javascript
+module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
+	$rootScope.$on("fb.init",function(){
+	    console.log("SDK Ready");
+	});
+});
+```
+
+### Run the method
+
+Run the method that you need. For instance getUser to get user available information.
+
+```javascript
+module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
+	$rootScope.$on("fb.init",function(){
+	    console.log("SDK Ready");
+	    facebook.getUser().then(function(r){
+	    	console.log(r.user); //User data returned;
+	    	console.log(r.authResponse); //Token auth, id etc..
+	    }, function(err){
+	    	console.log("Ops, something went wrong...");
+	    });
+	    
+	});
+});
+```
+
+
 
 
 License
