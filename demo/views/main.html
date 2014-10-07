@@ -1,0 +1,45 @@
+<div class="header">
+  <h3 class="text-muted">ng-facebook-api</h3>
+</div>
+
+<div class="jumbotron">
+  <h1>ng-facebook-api</h1>
+  <h3>Facebook API wrapper for AngularJS!<br/> Ready and easy to use!</h3>
+  <p class="lead">
+   
+     No developer has been mistreated during development.
+  </p>
+</div>
+<div class="container">
+	<a class="btn btn-success" ng-href="#" ng-click="getPublicProfile()">See your public profile</a>
+	<div class="row marketing">
+	  <h2>Public Profile</h2>
+	  <h4 ng-repeat="r in results">{{r}}</h4>
+	</div>
+	<hr/>
+	<a class="btn btn-success" ng-href="#" ng-click="getProfilePicture()">See your profile's picture</a>
+	<h2>Profile Image</h2>
+	<img src="{{img}}" />
+	
+	<hr/>
+	
+	<h2>Console API</h2>
+	<h3>Open the developer console to see the result</h3>
+	<br>
+	<div class="input-group">
+	<label>METHOD: </label>
+	  <select ng-model="form.method" >
+	    	<option value="GET" selected>GET</option>
+	    	<option value="POST">POST</option>
+	    	<option value="DELETE">DELETE</option>
+	   </select>
+	   <br/><br/>
+	  <label>PATH: </label> <input type="text" ng-model="form.path"><br/><br/>
+	  <a class="btn btn-success" ng-href="#" ng-click="api()">Test it!</a>
+	</div>
+	
+<br>
+</div>
+<div class="footer">
+  <p><span class="glyphicon glyphicon-heart"></span> from the team</p>
+</div>
