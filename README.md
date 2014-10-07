@@ -90,7 +90,7 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 * [getUserPicture(id,fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUserPicture) |  Retrive user's profile picture.
 * [login()](https://github.com/jberta93/ng-facebook-api/wiki/login) 
 * [logout()](https://github.com/jberta93/ng-facebook-api/wiki/logout) 
-* [setPermissions(permissions)](https://github.com/jberta93/ng-facebook-api/wiki/setPermissions) 
+* [setPermissions(permissions)](https://github.com/jberta93/ng-facebook-api/wiki/setPermissions) | Set the permissions that the Facebook App need to do it works
 
 
 
