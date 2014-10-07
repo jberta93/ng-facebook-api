@@ -87,7 +87,7 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 * [api(path, method, params)](https://github.com/jberta93/ng-facebook-api/wiki/api) | Permits to call the Graph API
 * [checkLoginStatus()](https://github.com/jberta93/ng-facebook-api/wiki/checkLoginStatus) | Check if user isn't logged and launch login procedure.
 * [getUser(id, fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUser) | Retrive user available (depends on requested permissions) information.
-* [getUserPicture(id,fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUserPicture) | Retrive user avatar
+* [getUserPicture(id,fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUserPicture) |  Retrive user's profile picture.
 * [login()](https://github.com/jberta93/ng-facebook-api/wiki/login) 
 * [logout()](https://github.com/jberta93/ng-facebook-api/wiki/logout) 
 * [setPermissions(permissions)](https://github.com/jberta93/ng-facebook-api/wiki/setPermissions) 
