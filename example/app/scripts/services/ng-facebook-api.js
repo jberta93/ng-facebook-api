@@ -92,7 +92,7 @@ module.service('FacebookService', function FacebookService($q) {
 			  fields = {};
 		  }
 		  api(request,API_METHOD.GET,fields).then(function(response){
-			  deferred.resolve({fields:response,authResponse: currentUserAuthResponse});
+			  deferred.resolve({user:response,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
 		  });
@@ -100,21 +100,19 @@ module.service('FacebookService', function FacebookService($q) {
 		  return deferred.promise;
 	  }
 	  
-	  var getUserPicture = function(params){
+	  var getUserPicture = function(id,fields){
 		  var deferred = $q.defer();
-		  var defParams = {
-				  userId: "me",
-				  fields: {
-					  redirect: false,
-					  height: "200",
-					  type: PICTURE_TYPE.NORMAL,
-					  width: "200"
-				  }
+		 var userId = angular.isUndefined(id) ? "me": id;
+		 var fieldsDef = {
+			  redirect: false,
+			  height: "200",
+			  type: PICTURE_TYPE.NORMAL,
+			  width: "200"
 		  }
 		  
-		  angular.extend(defParams,params);
+		  angular.extend(fieldsDef,fields);
 		  
-		  api('/'+defParams.userId+'/picture',API_METHOD.GET,defParams.fields).then(function(response){
+		  api('/'+userId+'/picture',API_METHOD.GET,fieldsDef).then(function(response){
 			  deferred.resolve({picture:response.data,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
@@ -186,7 +184,7 @@ module.service('FacebookService', function FacebookService($q) {
 				function(response){
 					if(response.authResponse){
 						currentUserAuthResponse = response.authResponse;
-						deferred.resolve(true);
+						deferred.resolve(currentUserAuthResponse);
 					}else{
 						deferred.reject("Not authorized!");
 					}
@@ -207,6 +205,7 @@ module.service('FacebookService', function FacebookService($q) {
 				  deferred.resolve(response);
 			  }
 		   });
+		  currentUserAuthResponse = null;
 		  return deferred.promise;	 
       }
 	  

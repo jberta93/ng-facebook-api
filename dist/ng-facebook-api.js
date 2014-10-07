@@ -92,7 +92,7 @@ module.service('FacebookService', function FacebookService($q) {
 			  fields = {};
 		  }
 		  api(request,API_METHOD.GET,fields).then(function(response){
-			  deferred.resolve({fields:response,authResponse: currentUserAuthResponse});
+			  deferred.resolve({user:response,authResponse: currentUserAuthResponse});
 		  },function(err){
 			  deferred.reject(err);
 		  });
@@ -207,6 +207,7 @@ module.service('FacebookService', function FacebookService($q) {
 				  deferred.resolve(response);
 			  }
 		   });
+		  currentUserAuthResponse = null;
 		  return deferred.promise;	 
       }
 	  
@@ -217,6 +218,7 @@ module.service('FacebookService', function FacebookService($q) {
 		  checkLoginStatus: checkLoginStatus,
 		  getUser: getUser,
 		  getUserPicture: getUserPicture,
+		  login:doLogin,
 		  logout: doLogout,
 		  setPermissions : setPermissions
 	  }
