@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>ng-facebook-api by jberta93</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>ng-facebook-api</h1>
+        <h2></h2>
+        <a href="https://github.com/jberta93/ng-facebook-api" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="welcome-to-the-ng-facebook-api" class="anchor" href="#welcome-to-the-ng-facebook-api"><span class="octicon octicon-link"></span></a>Welcome to the ng-facebook-api</h1>
+
+<p>Facebook API wrapper for AngularJS, you don't need to be worried of the configuration of Facebook JS SDK, you have only to code using API.</p>
+
+<p><strong>Ready and easy to use.</strong></p>
+
+<p>The module is now under developing, in the next weeks the module will be completed and we're going to put online the official docs.</p>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<ol>
+<li>Download the library <a href="https://github.com/jberta93/ng-facebook-api/archive/master.zip">clicking here</a>
+</li>
+<li>Include <a href="https://developers.facebook.com/docs/javascript/quickstart/v2.1">Facebook JS SDK</a>, only the SDK not the initialization <code>window.fbAsyncInit</code> and <code>FB.init</code>
+</li>
+<li>Modify your application inject the <code>ng-facebook-api</code>
+</li>
+<li>In your application config, setup the facebookProvider with your Facebook App settings. The settings are used in <a href="https://developers.facebook.com/docs/javascript/reference/FB.init/">FB.init</a>
+</li>
+<li>If your app use extra permissions that required user approval, set in your config. You can set permissions also in the controller, obviously before using login.</li>
+</ol><p>Here an example of configuration:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">angular</span>
+  <span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'&lt;your-app-name&gt;'</span><span class="p">,[</span><span class="s1">'ng-facebook-api'</span><span class="p">])</span>
+     <span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">facebookProvider</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/**</span>
+<span class="cm">        * Here the list of params used to configure the provider</span>
+<span class="cm">        * @param appId</span>
+<span class="cm">        * @param status</span>
+<span class="cm">        * @param xfbml</span>
+<span class="cm">        * @param cookie</span>
+<span class="cm">        * @param api-version</span>
+<span class="cm">        */</span>
+     <span class="nx">facebookProvider</span><span class="p">.</span><span class="nx">setInitParams</span><span class="p">(</span><span class="s1">'your-fb-app-id'</span><span class="p">,</span><span class="kc">true</span><span class="p">,</span><span class="kc">true</span><span class="p">,</span><span class="kc">true</span><span class="p">,</span><span class="s1">'v2.1'</span><span class="p">);</span>
+     <span class="c1">//if your app use extra permissions set it</span>
+     <span class="nx">facebookProvider</span><span class="p">.</span><span class="nx">setPermissions</span><span class="p">([</span><span class="s1">'email'</span><span class="p">,</span><span class="s1">'read_stream'</span><span class="p">]);</span>
+      <span class="p">});</span>
+</pre></div>
+
+<p><strong>Important:</strong> You must include the JS SDK in your <code>&lt;head&gt;</code> or in method <code>.run(function(){})</code> of angular app.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>The provider permits to have an easy access to the most used api (like user info retriving, avatar, etc..) but also permits, thanks to <code>api</code> method, to used all methods of <a href="https://developers.facebook.com/docs/graph-api/reference/">Graph API</a>.</p>
+
+<p>Every methods check the login status and if user isn't logged, launch the login procedure. Anyway the provider has public methods <code>login</code> and <code>checkLoginStatus</code> to implement your custom flows. </p>
+
+<h3>
+<a name="check-sdk-loading" class="anchor" href="#check-sdk-loading"><span class="octicon octicon-link"></span></a>Check SDK Loading</h3>
+
+<p>In your controller listen on the <code>$rootScope</code> the event <code>fb.init</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'MainCtrl'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">$rootScope</span><span class="p">,</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">facebook</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s2">"fb.init"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"SDK Ready"</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="run-the-method" class="anchor" href="#run-the-method"><span class="octicon octicon-link"></span></a>Run the method</h3>
+
+<p>Run the method that you need. For instance: <code>getUser</code> to obtain user available information.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'MainCtrl'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">$rootScope</span><span class="p">,</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">facebook</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s2">"fb.init"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"SDK Ready"</span><span class="p">);</span>
+        <span class="nx">facebook</span><span class="p">.</span><span class="nx">getUser</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">user</span><span class="p">);</span> <span class="c1">//User data returned;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">authResponse</span><span class="p">);</span> <span class="c1">//Token auth, id etc..</span>
+        <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ops, something went wrong..."</span><span class="p">);</span>
+        <span class="p">});</span>
+
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h3>
+
+<p>The official docs wiki is <a href="https://github.com/jberta93/ng-facebook-api/wiki/Home">here</a></p>
+
+<h4>
+<a name="enum" class="anchor" href="#enum"><span class="octicon octicon-link"></span></a>Enum</h4>
+
+<ul>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/API_METHOD">API_METHOD</a> | The HTTP method that you can use to call the api.</li>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/PICTURE_TYPE">PICTURE_TYPE</a> | When you get user profile image use this to indicate a pre-specified size of picture.</li>
+</ul><h4>
+<a name="method" class="anchor" href="#method"><span class="octicon octicon-link"></span></a>Method</h4>
+
+<ul>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/api">api(path, method, params)</a> | Permits to call the Graph API</li>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/checkLoginStatus">checkLoginStatus()</a> | Check if user isn't logged and launch login procedure.</li>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/getUser">getUser(id, fields)</a> | Get logged user info</li>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/login">login()</a> </li>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/logout">logout()</a> </li>
+<li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/setPermissions">setPermissions(permissions)</a> </li>
+</ul><h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>This project is released over <a href="http://opensource.org/licenses/MIT" title="MIT License">MIT license</a></p>
+
+<h1>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h1>
+
+<p><a href="http://www.lorenzobertacchi.it/">Lorenzo Bertacchi</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/jberta93/ng-facebook-api/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/jberta93/ng-facebook-api/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/jberta93/ng-facebook-api"></a> is maintained by <a href="https://github.com/jberta93">jberta93</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
