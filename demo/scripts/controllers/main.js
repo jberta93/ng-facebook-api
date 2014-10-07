@@ -20,12 +20,15 @@ angular.module('exampleApp')
     	});
     }
     
+    $scope.posts = [];
     
     $scope.form = {method:'GET',path: "/me/feed"};
     $scope.api = function(){
     	facebook.api($scope.form.path, facebook.API_METHOD[$scope.form.method]).then(function(resp){
     		console.log("Success!");
     		console.log(resp);
+    		
+    		$scope.posts = resp.data;
     	})
     }
     
