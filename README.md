@@ -7,7 +7,7 @@ Facebook API wrapper for AngularJS, you don't need to be worried of the configur
 
 [See the official site](http://jberta93.github.io/ng-facebook-api/)
 
-[Try our demo](http://jberta93.github.io/ng-facebook-api/demo)
+[Demo](http://jberta93.github.io/ng-facebook-api/demo)
 
 The module is now under developing, in the next weeks the module will be completed and we're going to put online the official docs.
 
