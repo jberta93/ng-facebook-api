@@ -37,10 +37,11 @@
 	  <label>PATH: </label> <input type="text" ng-model="form.path" disabled="disabled"><br/><br/>
 	  <a class="btn btn-success" ng-href="#" ng-click="api()">Test it!</a>
 	</div>
+	<br/><br/><br/>
 	<div class="row" ng-repeat="p in posts">
 		<img src="{{p.picture}}" />
 		<p>Message : {{p.message}}</p>
-		<p>Likes: {{p.likes.length}}</p>
+		<p>Likes: {{p.likes.data.length}}</p>
 	</div>
 <br>
 </div>
