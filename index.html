@@ -35,19 +35,21 @@
 
 <p><strong>Ready and easy to use.</strong></p>
 
+<p><a href="http://jberta93.github.io/ng-facebook-api/demo">Demo</a></p>
+
 <p>The module is now under developing, in the next weeks the module will be completed and we're going to put online the official docs.</p>
 
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <ol>
-<li>Download the library <a href="https://github.com/jberta93/ng-facebook-api/archive/master.zip">clicking here</a>
+<li>Download the library <a href="https://github.com/jberta93/ng-facebook-api/archive/master.zip">clicking here</a> or use <code>bower install ng-facebook-api</code>
 </li>
 <li>Include <a href="https://developers.facebook.com/docs/javascript/quickstart/v2.1">Facebook JS SDK</a>, only the SDK not the initialization <code>window.fbAsyncInit</code> and <code>FB.init</code>
 </li>
 <li>Modify your application inject the <code>ng-facebook-api</code>
 </li>
-<li>In your application config, setup the facebookProvider with your Facebook App settings. The settings are used in <a href="https://developers.facebook.com/docs/javascript/reference/FB.init/">FB.init</a>
+<li>In your application config, you <strong>must</strong> setup the facebookProvider with your Facebook App settings. The settings are used in <a href="https://developers.facebook.com/docs/javascript/reference/FB.init/">FB.init</a>
 </li>
 <li>If your app use extra permissions that required user approval, set in your config. You can set permissions also in the controller, obviously before using login.</li>
 </ol><p>Here an example of configuration:</p>
@@ -140,7 +142,15 @@
 <a href="https://github.com/jberta93/ng-facebook-api/wiki/logout">logout()</a> </li>
 <li>
 <a href="https://github.com/jberta93/ng-facebook-api/wiki/setPermissions">setPermissions(permissions)</a> | Set the permissions that the Facebook App need to do it works</li>
-</ul><h1>
+</ul><h2>
+<a name="versions" class="anchor" href="#versions"><span class="octicon octicon-link"></span></a>Versions</h2>
+
+<h3>
+<a name="010" class="anchor" href="#010"><span class="octicon octicon-link"></span></a>0.1.0</h3>
+
+<p>First stable version.</p>
+
+<h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
 
 <p>This project is released over <a href="http://opensource.org/licenses/MIT" title="MIT License">MIT license</a></p>
@@ -168,6 +178,16 @@
       </div>
     </div>
 
-  
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-55524976-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
