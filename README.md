@@ -1,7 +1,7 @@
 Welcome to the ng-facebook-api
 ===============================
 
-Facebook API wrapper for AngularJS, you don't need to be worried of the configuration of Facebook JS SDK, you have only to code using API.
+Facebook API wrapper for AngularJS, you don't have to worry about the configuration and	working principles of Facebook JS SDK, you have only to code using our API.
 
 **Ready and easy to use.**
 
@@ -17,7 +17,7 @@ The module is now under developing, in the next weeks the module will be complet
 2. Include [Facebook JS SDK](https://developers.facebook.com/docs/javascript/quickstart/v2.1), only the SDK not the initialization `window.fbAsyncInit` and `FB.init`
 3. Modify your application inject the `ng-facebook-api`
 4. In your application config, you **must** setup the facebookProvider with your Facebook App settings. The settings are used in [FB.init](https://developers.facebook.com/docs/javascript/reference/FB.init/)
-5. If your app use extra permissions that required user approval, set in your config. You can set permissions also in the controller, obviously before using login.
+5. If your app uses extra permissions that require user approval, set in your config. You can set permissions also in the controller, obviously before using login.
 
 Here an example of configuration:
 ```javascript
@@ -43,9 +43,9 @@ angular
 
 ##Usage
 
-The provider permits to have an easy access to the most used api (like user info retriving, avatar, etc..) but also permits, thanks to `api` method, to used all methods of [Graph API](https://developers.facebook.com/docs/graph-api/reference/).
+The provider permits to have an easy access to the most used api (like user info retriving, avatar, etc..) but it also permits, thanks to `api` method, to used all methods of [Graph API](https://developers.facebook.com/docs/graph-api/reference/).
 
-Every methods check the login status and if user isn't logged, launch the login procedure. Anyway the provider has public methods `login` and `checkLoginStatus` to implement your custom flows. 
+Every methods check the login status and if user isn't logged, it launches the login procedure. Anyway the provider has public methods `login` and `checkLoginStatus` to implement your custom flows. 
 
 ### Check SDK Loading
 
@@ -61,7 +61,7 @@ module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
 
 ### Run the method
 
-Run the method that you need. For instance: `getUser` to obtain user available information.
+Run the method that you need. For instance: `getUser` to obtain available user information.
 
 ```javascript
 module.controller('MainCtrl', function ($rootScope,$scope, facebook) {
@@ -88,13 +88,13 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 
 #### Method
 
-* [api(path, method, params)](https://github.com/jberta93/ng-facebook-api/wiki/api) | Permits to call the Graph API
-* [checkLoginStatus()](https://github.com/jberta93/ng-facebook-api/wiki/checkLoginStatus) | Check if user isn't logged and launch login procedure.
-* [getUser(id, fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUser) | Retrive user available (depends on requested permissions) information.
-* [getUserPicture(id,fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUserPicture) |  Retrive user's profile picture.
+* [api(path, method, params)](https://github.com/jberta93/ng-facebook-api/wiki/api) | It permits to call the Graph API
+* [checkLoginStatus()](https://github.com/jberta93/ng-facebook-api/wiki/checkLoginStatus) | It checks if user isn't logged and launch login procedure.
+* [getUser(id, fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUser) | It retrives  available user (depends on requested permissions) information.
+* [getUserPicture(id,fields)](https://github.com/jberta93/ng-facebook-api/wiki/getUserPicture) |  It retrives user's profile picture.
 * [login()](https://github.com/jberta93/ng-facebook-api/wiki/login) 
 * [logout()](https://github.com/jberta93/ng-facebook-api/wiki/logout) 
-* [setPermissions(permissions)](https://github.com/jberta93/ng-facebook-api/wiki/setPermissions) | Set the permissions that the Facebook App need to do it works
+* [setPermissions(permissions)](https://github.com/jberta93/ng-facebook-api/wiki/setPermissions) | It set the permissions that the Facebook App need to do it work.
 
 
 ##Versions
