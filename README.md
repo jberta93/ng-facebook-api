@@ -9,6 +9,7 @@ Facebook API wrapper for AngularJS, you don't have to worry about the configurat
 
 [Demo](http://jberta93.github.io/ng-facebook-api/demo)
 
+
 The module is now under developing, in the next weeks the module will be completed and we're going to put online the official docs.
 
 ##Configuration
@@ -99,8 +100,20 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 
 ##Versions
 
-### 0.1.0
+### 0.1.0 
 First stable version.
+
+## Next Version
+
+**Version: 0.2.0**
+**Estimated release: 22-26 Oct 2014**
+
+* Minor bug fixing
+* Add cache for the methods that wrap `api` method.
+* New easy method:
+* * getUserFeed() -> It fetches user feed post.
+* * getUserPhotos() -> It gets user's photos.
+* * createPost() -> It permits to post on user's feed.
 
 License
 ===============================
