@@ -31,7 +31,7 @@
           <h1>
 <a name="welcome-to-the-ng-facebook-api" class="anchor" href="#welcome-to-the-ng-facebook-api"><span class="octicon octicon-link"></span></a>Welcome to the ng-facebook-api</h1>
 
-<p>Facebook API wrapper for AngularJS, you don't need to be worried of the configuration of Facebook JS SDK, you have only to code using API.</p>
+<p>Facebook API wrapper for AngularJS, you don't have to worry about the configuration and working principles of Facebook JS SDK, <strong>you have only to code using our API</strong>.</p>
 
 <p><strong>Ready and easy to use.</strong></p>
 
@@ -51,8 +51,10 @@
 </li>
 <li>In your application config, you <strong>must</strong> setup the facebookProvider with your Facebook App settings. The settings are used in <a href="https://developers.facebook.com/docs/javascript/reference/FB.init/">FB.init</a>
 </li>
-<li>If your app use extra permissions that required user approval, set in your config. You can set permissions also in the controller, obviously before using login.</li>
-</ol><p>Here an example of configuration:</p>
+<li>If your app uses extra permissions that require user approval, set in your config. You can set permissions also in the controller, obviously before using login.</li>
+</ol>
+
+<p>Here an example of configuration:</p>
 
 <div class="highlight highlight-javascript"><pre><span class="nx">angular</span>
   <span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'&lt;your-app-name&gt;'</span><span class="p">,[</span><span class="s1">'ng-facebook-api'</span><span class="p">])</span>
@@ -76,9 +78,9 @@
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>The provider permits to have an easy access to the most used api (like user info retriving, avatar, etc..) but also permits, thanks to <code>api</code> method, to used all methods of <a href="https://developers.facebook.com/docs/graph-api/reference/">Graph API</a>.</p>
+<p>The provider permits to have an easy access to the most used api (like user info retriving, avatar, etc..) but it also permits, thanks to <code>api</code> method, to used all methods of <a href="https://developers.facebook.com/docs/graph-api/reference/">Graph API</a>.</p>
 
-<p>Every methods check the login status and if user isn't logged, launch the login procedure. Anyway the provider has public methods <code>login</code> and <code>checkLoginStatus</code> to implement your custom flows. </p>
+<p>Every methods check the login status and if user isn't logged, it launches the login procedure. Anyway the provider has public methods <code>login</code> and <code>checkLoginStatus</code> to implement your custom flows. </p>
 
 <h3>
 <a name="check-sdk-loading" class="anchor" href="#check-sdk-loading"><span class="octicon octicon-link"></span></a>Check SDK Loading</h3>
@@ -95,7 +97,7 @@
 <h3>
 <a name="run-the-method" class="anchor" href="#run-the-method"><span class="octicon octicon-link"></span></a>Run the method</h3>
 
-<p>Run the method that you need. For instance: <code>getUser</code> to obtain user available information.</p>
+<p>Run the method that you need. For instance: <code>getUser</code> to obtain available user information.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'MainCtrl'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">$rootScope</span><span class="p">,</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">facebook</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">$rootScope</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s2">"fb.init"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
@@ -124,31 +126,55 @@
 <a href="https://github.com/jberta93/ng-facebook-api/wiki/API_METHOD">API_METHOD</a> | The HTTP method that you can use to call the api.</li>
 <li>
 <a href="https://github.com/jberta93/ng-facebook-api/wiki/PICTURE_TYPE">PICTURE_TYPE</a> | When you get user profile image use this to indicate a pre-specified size of picture.</li>
-</ul><h4>
+</ul>
+
+<h4>
 <a name="method" class="anchor" href="#method"><span class="octicon octicon-link"></span></a>Method</h4>
 
 <ul>
 <li>
-<a href="https://github.com/jberta93/ng-facebook-api/wiki/api">api(path, method, params)</a> | Permits to call the Graph API</li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/api">api(path, method, params)</a> | It permits to call the Graph API</li>
 <li>
-<a href="https://github.com/jberta93/ng-facebook-api/wiki/checkLoginStatus">checkLoginStatus()</a> | Check if user isn't logged and launch login procedure.</li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/checkLoginStatus">checkLoginStatus()</a> | It checks if user isn't logged and launch login procedure.</li>
 <li>
-<a href="https://github.com/jberta93/ng-facebook-api/wiki/getUser">getUser(id, fields)</a> | Retrive user available (depends on requested permissions) information.</li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/getUser">getUser(id, fields)</a> | It retrives  available user (depends on requested permissions) information.</li>
 <li>
-<a href="https://github.com/jberta93/ng-facebook-api/wiki/getUserPicture">getUserPicture(id,fields)</a> |  Retrive user's profile picture.</li>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/getUserPicture">getUserPicture(id,fields)</a> |  It retrives user's profile picture.</li>
 <li>
 <a href="https://github.com/jberta93/ng-facebook-api/wiki/login">login()</a> </li>
 <li>
 <a href="https://github.com/jberta93/ng-facebook-api/wiki/logout">logout()</a> </li>
 <li>
-<a href="https://github.com/jberta93/ng-facebook-api/wiki/setPermissions">setPermissions(permissions)</a> | Set the permissions that the Facebook App need to do it works</li>
-</ul><h2>
+<a href="https://github.com/jberta93/ng-facebook-api/wiki/setPermissions">setPermissions(permissions)</a> | It set the permissions that the Facebook App need to do it work.</li>
+</ul>
+
+<h2>
 <a name="versions" class="anchor" href="#versions"><span class="octicon octicon-link"></span></a>Versions</h2>
 
 <h3>
 <a name="010" class="anchor" href="#010"><span class="octicon octicon-link"></span></a>0.1.0</h3>
 
 <p>First stable version.</p>
+
+<h2>
+<a name="next-version" class="anchor" href="#next-version"><span class="octicon octicon-link"></span></a>Next Version</h2>
+
+<p><strong>Version: 0.2.0</strong></p>
+
+<p><strong>Estimated release: 22-26 Oct 2014</strong></p>
+
+<ul>
+<li>Minor bug fixing</li>
+<li>Add cache for the methods that wrap <code>api</code> method.</li>
+<li>New easy method:
+
+<ul>
+<li>getUserFeed() -&gt; It fetches user feed post.</li>
+<li>getUserPhotos() -&gt; It gets user's photos.</li>
+<li>createPost() -&gt; It permits to post on user's feed.</li>
+</ul>
+</li>
+</ul>
 
 <h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
