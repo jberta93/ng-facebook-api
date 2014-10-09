@@ -106,6 +106,7 @@ First stable version.
 ## Next Version
 
 **Version: 0.2.0**
+
 **Estimated release: 22-26 Oct 2014**
 
 * Minor bug fixing
