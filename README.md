@@ -1,7 +1,7 @@
 Welcome to the ng-facebook-api
 ===============================
 
-Facebook API wrapper for AngularJS, you don't have to worry about the configuration and	working principles of Facebook JS SDK, you have only to code using our API.
+Facebook API wrapper for AngularJS, you don't have to worry about the configuration and	working principles of Facebook JS SDK, **you have only to code using our API**.
 
 **Ready and easy to use.**
 
