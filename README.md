@@ -112,9 +112,9 @@ First stable version.
 * Minor bug fixing
 * Add cache for the methods that wrap `api` method.
 * New easy method:
-* * getUserFeed() -> It fetches user feed post.
-* * getUserPhotos() -> It gets user's photos.
-* * createPost() -> It permits to post on user's feed.
+** getUserFeed() -> It fetches user feed post.
+** getUserPhotos() -> It gets user's photos.
+** createPost() -> It permits to post on user's feed.
 
 License
 ===============================
