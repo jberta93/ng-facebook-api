@@ -96,9 +96,10 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 * [login()](https://github.com/jberta93/ng-facebook-api/wiki/login) 
 * [logout()](https://github.com/jberta93/ng-facebook-api/wiki/logout) 
 * [setPermissions(permissions)](https://github.com/jberta93/ng-facebook-api/wiki/setPermissions) | It set the permissions that the Facebook App need to do it work.
+* [setAutomaticLoginFlow(bool)](https://github.com/jberta93/ng-facebook-api/wiki/setAutomaticLoginFlow) | It permits to choose if use the automatic login flow (every time is needed) or implements custom login flow.
 
 
-##Versions
+##Versions & Changelog
 
 ### 0.1.0 
 First stable version.
