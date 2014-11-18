@@ -101,6 +101,11 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 
 ##Versions & Changelog
 
+### 0.1.1
+Bug fixing:
+
+* [#1 - Play well with bower rules](https://github.com/jberta93/ng-facebook-api/issues/1)
+
 ### 0.1.0 
 First stable version.
 
