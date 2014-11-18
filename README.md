@@ -113,14 +113,15 @@ First stable version.
 
 **Version: 0.2.0**
 
-**Estimated release: 22-26 Oct 2014**
+**Estimated release: 22-26 Nov 2014**
 
 * Minor bug fixing
-* Add cache for the methods that wrap `api` method.
 * New easy method:
    * getUserFeed() -> It fetches user feed post.
-   * getUserPhotos() -> It gets user's photos.
+   * uploadPhoto() -> It permits to upload a photo from form or url.
    * createPost() -> It permits to post on user's feed.
+* New configuration method:
+	* Disable/enabled autologin  
 
 License
 ===============================
