@@ -9,6 +9,7 @@
   "authors": [
     "Lorenzo Bertacchi"
   ],
+  "main": "./dist/ng-facebook-api.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
