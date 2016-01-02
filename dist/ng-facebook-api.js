@@ -163,15 +163,17 @@ module.service('FacebookService', function FacebookService($q) {
 	  }
 	  
 	  
-	  var checkLoginStatus = function(){
+	  var checkLoginStatus = function( forcelogin ){
 		  var deferred = $q.defer();
-		  
+		  var forcelogin = (typeof forcelogin == "undefined" || forcelogin == null)?true:forcelogin;
+
 		  FB.getLoginStatus( function (response){
 			  if (response.status === 'connected') {
 				  currentUserAuthResponse = response.authResponse;
 				  deferred.resolve(currentUserAuthResponse);
 			  } else {
-				  deferred.promise = doLogin();
+				  if(forcelogin) deferred.promise = doLogin();
+				  else deferred.reject(null); //Better {response:null,reason:"Not logged in"}
 			  } 
 		  });
 		  
