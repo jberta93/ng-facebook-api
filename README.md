@@ -40,7 +40,8 @@ angular
 ```
 
 
-**Important:** You must include the JS SDK in your `<head>` or in method `.run(function(){})` of angular app.
+~~**Important:** You must include the JS SDK in your `<head>` or in method `.run(function(){})` of angular app.~~
+**Not necessary from version 0.1.2**
 
 ##Usage
 
