@@ -101,6 +101,12 @@ The official docs wiki is [here](https://github.com/jberta93/ng-facebook-api/wik
 
 ##Versions & Changelog
 
+### 0.1.2
+Bug Fixing:
+ * In checkLoginStatus you can now choose if force login or not
+ 
+* Added integration with async FB SDK loading (you don't have to load manually the sdk)
+
 ### 0.1.1
 Bug fixing:
 
@@ -112,8 +118,6 @@ First stable version.
 ## Next Version
 
 **Version: 0.2.0**
-
-**Estimated release: 22-26 Nov 2014**
 
 * Minor bug fixing
 * New easy method:
