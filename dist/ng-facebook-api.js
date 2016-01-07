@@ -9,14 +9,19 @@ var module = angular.module('ng-facebook-api', []);
 
 module.provider('facebook',function (){
 	var config = {};
+	var sdkLang = "en_US"
 	var permissions = [];
-	this.setInitParams = function(appId,status,xfbml,cookie,apiVersion){
+	this.setInitParams = function(appId,status,xfbml,cookie,apiVersion, sdkLangParam){
 		config = {
 				appId      : appId,
 			    status     : status,
 			    xfbml      : xfbml,
 			    cookie     : cookie,
 			    version    : apiVersion
+		}
+
+		if(typeof sdkLang !== "undefined"){
+			sdkLang = sdkLangParam;
 		}
 	}
 	
@@ -33,7 +38,17 @@ module.provider('facebook',function (){
 		config.cookie = cookie;
 	}
 	
+
+
 	var sdkInit = function($rootScope){
+		 (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/"+sdkLang+"/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 		if(typeof window.FB == 'undefined'){
 			 window.fbAsyncInit = function() {
 				 FB.init(config);
